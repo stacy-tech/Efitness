@@ -1,37 +1,26 @@
 class SessionsController < ApplicationController
 
-  # GET: /sessions
-  get "/sessions" do
-    erb :"/sessions/index.html"
+  get '/login' do
+    erb :'sessions/login.html'
   end
 
-  # GET: /sessions/new
-  get "/sessions/new" do
-    erb :"/sessions/new.html"
+  post '/login' do
+    user = User.find_by_email(params["email"])
+    if user && user.authenticate(params["password"])
+      session["user_id"] = user.id
+      flash[:success] = "sucessfully logged in"
+      redirect '/plants'
+    else
+      flash[:error] = "invalid credentials"
+      redirect '/login'
+    end
   end
 
-  # POST: /sessions
-  post "/sessions" do
-    redirect "/sessions"
+  get '/logout' do 
+    session.clear 
+    redirect '/'
   end
-
-  # GET: /sessions/5
-  get "/sessions/:id" do
-    erb :"/sessions/show.html"
-  end
-
-  # GET: /sessions/5/edit
-  get "/sessions/:id/edit" do
-    erb :"/sessions/edit.html"
-  end
-
-  # PATCH: /sessions/5
-  patch "/sessions/:id" do
-    redirect "/sessions/:id"
-  end
-
-  # DELETE: /sessions/5/delete
-  delete "/sessions/:id/delete" do
-    redirect "/sessions"
-  end
+  
 end
+
+  
