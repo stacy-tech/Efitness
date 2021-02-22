@@ -6,5 +6,6 @@ end
 
 run ApplicationController
 use SessionsController
-use EfitsController
+use ExercisesController
 use UsersController
+use WorkoutsController
