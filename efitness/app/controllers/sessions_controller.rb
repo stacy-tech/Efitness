@@ -1,13 +1,17 @@
 class SessionsController < ApplicationController
 
   get '/login' do
-    erb :'sessions/login.html'
+    if session[:user_id]
+      redirect to '/workouts'
+    else
+      erb :'sessions/login.html'
+    end
   end
 
   post '/login' do
-    user = User.find_by_email(params["email"])
-    if user && user.authenticate(params["password"])
-      session["user_id"] = user.id
+    @user = User.find_by_email(params["email"])
+    if @user && @user.authenticate(params["password"])
+      session["user_id"] = @user.id
       flash[:success] = "sucessfully logged in"
       redirect '/workouts'
     else
