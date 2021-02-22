@@ -1,0 +1,16 @@
+<% if flash[:error] %>
+    <%= flash[:error] %>
+<% end %>
+
+<h1>Login</h1>
+
+<form method="post" action="/login">
+
+    <label for="username">Email</label>
+    <input type="email" name="email" id="name"/>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password"/>
+
+    <input type="submit" value="Login">
+</form>

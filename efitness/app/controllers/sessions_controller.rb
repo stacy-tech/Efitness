@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params["password"])
       session["user_id"] = user.id
       flash[:success] = "sucessfully logged in"
-      redirect '/plants'
+      redirect '/efits'
     else
       flash[:error] = "invalid credentials"
       redirect '/login'
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     session.clear 
     redirect '/'
   end
-  
+
 end
 
   
