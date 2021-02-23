@@ -1,1 +1,32 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<h1>Create a New workout</h1>
+
+<form action="/workouts" method="POST">
+
+  <label for="workout_name">Name</label>
+  <input type="text" name="workout[name]" id="workout_name"></input>
+  <br>
+  <label for="workout_notes">Notes</label>
+  <input type="text" name="workout[notes]" id="workout_notes"></input> 
+  <br>
+  <% 5.times do |num| %>
+    <label> Pick an exsisting exercise </label>
+    <select name="exercises[][name]">
+    <option value=nil> select an option </option>
+        <% Exercise.all.each do |ex| %>
+            <option value="<%= ex.name %>" ><%= ex.name %> </option> 
+        <% end %>
+    </select>
+    Or create a new exercise:<br>
+    <label for="exercise_<%=num%>_name">Name</label>
+    <input type="text" name="exercises[][name]" id="exercise_<%=num%>_name"></input>
+    
+    <label for="exercise_<%=num%>_bodypart">Body_part</label>
+    <input type="text" name="exercises[][bodypart]" id="exercise_<%=num%>_bodypart"></input>
+    <br>
+  <% end %>
+  <label for="workout_notes">Notes</label>
+  <input type="text" name="workout[notes]" id="workout_notes"></input>
+
+  <input type="submit" value="Create Workout">
+
+</form>

@@ -10,12 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_22_055531) do
+ActiveRecord::Schema.define(version: 2021_02_23_003021) do
 
-  create_table "efits", force: :cascade do |t|
+  create_table "exercise_workouts", force: :cascade do |t|
+    t.integer "workout_id"
+    t.integer "exercise_id"
+    t.integer "series"
+    t.integer "reps"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["exercise_id"], name: "index_exercise_workouts_on_exercise_id"
+    t.index ["workout_id"], name: "index_exercise_workouts_on_workout_id"
+  end
+
+  create_table "exercises", force: :cascade do |t|
     t.string "name"
-    t.string "workout"
-    t.date "date"
+    t.string "bodypart"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

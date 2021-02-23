@@ -1,6 +1,6 @@
 class CreateExercise < ActiveRecord::Migration[5.2]
   def change
-    create_table :exercise do |t|
+    create_table :exercises do |t|
       t.string :name
       t.string :bodypart
 
