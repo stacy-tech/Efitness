@@ -15,12 +15,13 @@ class WorkoutsController < ApplicationController
   get '/workouts/:id' do
     redirect_if_not_logged_in
     @workout = Workout.find(params[:id])
-    if current_user == @workout.user
+      if current_user == @workout.user
       erb :'workouts/show.html'
     else
       # flash[:error]="Authorization denied"
       redirect to '/workouts'
     end
+    
   end
 
   post '/workouts' do
@@ -36,8 +37,8 @@ class WorkoutsController < ApplicationController
 
     end
     if workout.save
-      # flash[:sucess]="Sucess workout"
-      redirect to '/workouts'
+      # flash[:sucess]="Successfully save new workout." 
+      redirect to '/workouts/show.html'
     else
       # flash[:error]= workout.errors.full_messages.to_sentence
       redirect to '/workouts/new'
