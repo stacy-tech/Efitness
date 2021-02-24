@@ -14,15 +14,25 @@ class WorkoutsController < ApplicationController
 
   get '/workouts/:id' do
     redirect_if_not_logged_in
-    @workout = Workout.find(params[:id])
-      if current_user == @workout.user
+    @workouts = Workouts.find(params[:id])
+    if current_user == @workouts.user && @workouts
       erb :'workouts/show.html'
     else
       # flash[:error]="Authorization denied"
-      redirect to '/workouts'
+      redirect to '/login'
     end
     
   end
+
+  # get '/workouts/:id/edit' do 
+  #   redirect_if_not_logged_in
+  #   @workouts = Workouts.find(params[:id])
+  #   if current_user == @workouts.user && @workouts
+  #   erb :'workouts/edit.html'
+  #   else
+  #     redirect '/login'
+  #   end
+  # end
 
   post '/workouts' do
     redirect_if_not_logged_in

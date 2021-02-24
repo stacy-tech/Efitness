@@ -1,0 +1,8 @@
+# <h1>Name:<%= @workouts.name%></h1> <br>
+# <p>Notes: <%= @workouts.notes%></p> <br>
+
+# <a href="/workouts/<%=@workouts.id%>/edit">Edit</a>||
+# <form method="post" action="/workouts/<%=@workouts.id%>/delete">
+#     <input type="hidden" name="_method" value="Delete">
+#     <input type="submit" role="button" value="Delete">
+# </form>
