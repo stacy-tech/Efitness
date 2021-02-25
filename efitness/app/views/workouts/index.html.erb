@@ -1,8 +1,10 @@
 <h2>Welcome, <%= current_user.username %></h2>
 <ul class="efitness">
     <% @workouts.each do |workout|%>
-        <li><%= workout.name %></li>
-        <li><%= workout.notes %></li>
+        <a href="/workouts/<%= workout.id%>"
+            <li><%= workout.name %></li>
+            <li><%= workout.notes %></li>
+        </a>
     <%end%>
 
     <a href="/workouts/new">Create New Workout</a>
