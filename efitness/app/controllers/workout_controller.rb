@@ -34,6 +34,18 @@ class WorkoutsController < ApplicationController
     end
   end
 
+  get '/workouts/:id/delete' do
+    redirect_if_not_logged_in
+    @workout = Workout.find(params[:id])
+    if current_user == @workout.user
+      @workout.delete
+      flash[:sucess]="Successfully deleted workout!"
+      redirect to '/workouts'
+    else 
+      redirect '/login'
+    end
+  end
+
   post '/workouts' do
     redirect_if_not_logged_in
     workout = current_user.workouts.build(params["workout"])
@@ -54,5 +66,18 @@ class WorkoutsController < ApplicationController
       redirect to '/workouts/new'
     end
     
+  end
+
+  patch '/workouts/:id' do
+    redirect_if_not_logged_in
+    @workout = Workout.find(params[:id])
+    if current_user == @workout.user
+      @workout.name = params[:name]
+      @workout.notes = params[:notes]
+      @workout.save
+      redirect "/workouts/#{workout.id}"
+    else
+      redirect "/workouts/#{workout.id}"
+    end 
   end
 end
