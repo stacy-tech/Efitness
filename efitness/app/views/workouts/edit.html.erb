@@ -12,16 +12,16 @@
     <label> Pick an exsisting exercise </label>
     <select name="exercises[][name]">
     <option value=nil> select an option </option>
-        <% Exercise.all.each do |ex| %>
+        <% @workout.workout_exercises.each do |exercise| %>
             <option value="<%= ex.name %>" ><%= ex.name %> </option> 
         <% end %>
     </select>
     Or create a new exercise:<br>
     <label for="exercise_<%=num%>_name">Name</label>
-    <input type="text" name="exercises[][name]" id="exercise_<%=num%>_name"></input>
+    <input type="text" name="exercises[][name]" value="<%= exercise.id %>" id="exercise_<%=num%>_name"></input>
     
     <label for="exercise_<%=num%>_bodypart">Body_part</label>
-    <input type="text" name="exercises[][bodypart]" id="exercise_<%=num%>_bodypart"></input>
+    <input type="text" name="exercises[][bodypart]" value="<%= exercise.id %>" id="exercise_<%=num%>_bodypart"></input>
     <br>
   <% end %>
   <input type="submit" value="Update">
