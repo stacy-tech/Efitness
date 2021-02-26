@@ -35,24 +35,22 @@ class WorkoutsController < ApplicationController
   end
 
   patch "/workouts/:id" do 
-    redirect_if_not_logged_in 
     @workout = Workout.find(params[:id])
-    if current_user == @workout.user
+     if current_user == @workout.user
       @workout.update(params[:workout])
-      @workout.save
       redirect "/workouts/#{@workout.id}"
     else 
-      redirect "/workouts"
+     flash[:error] = "Access denied."
     end
   end
     
   delete "/workouts/:id" do
-    redirect_if_not_logged_in
     @workout = Workout.find(params[:id])
     if current_user == @workout.user
       @workout.delete
-    else
       redirect '/workouts'
+    else
+      redirect '/login'
     end
   end
 
