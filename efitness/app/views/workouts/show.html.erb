@@ -1,8 +1,8 @@
 <h1>Name:<%= @workout.name%></h1> 
 <h2>Notes: <%= @workout.notes%></h2> 
 
-<a href="/workouts/<%=@workout.id%>/edit">Edit</a>
-<form style="display: inline; " method="post" action="/workouts/<%=@workout.id%>/delete">
-<input type="hidden" name="_method" value="Delete">
-<input type="submit" role="button" value="Delete">
+<a class = "btn btn-xs btn-warning" href="/workouts/<%=@workout.id%>/edit">Edit</a>
+<form style="display: inline; " method="POST" action="/workouts/<%=@workout.id%>">
+<input type="hidden" name="_method" value="DELETE">
+<input class = "btn btn-xs btn-danger" type="submit" role="button" value="Delete">
 </form>

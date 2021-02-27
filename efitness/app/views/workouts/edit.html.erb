@@ -1,28 +1,38 @@
 <h1>Edit workout</h1>
 
 <form action="/workouts/<%= @workout.id %>" method="POST">
-  <input type ="hidden" name="_method" method="Patch"
+  <input type ="hidden" name="_method" value="PATCH"
   <label for="workout_name">Name</label>
   <input type="text" name="workout[name]" value="<%= @workout.name %>" id="workout_name"></input>
   <br>
   <label for="workout_notes">Notes</label>
   <input type="text" name="workout[notes]"value="<%= @workout.notes %>" id="workout_notes"></input> 
   <br>
+  <% @workout.exercises.each.with_index(1) do |ex,index| %>
+    <label> Exercise <%=index%>:</label>
+    <select name="exercises[][name]">
+    <option value= "<%= ex.name %>"><%= ex.name %></option>
+        <% Exercise.all.each do|ex| %>
+            <option value="<%= ex.name %>" ><%= ex.name %> </option> 
+        <% end %>
+    </select>
+    <% end %>
+    <br><hr>
   <% 3.times do |num| %>
     <label> Pick an exsisting exercise </label>
     <select name="exercises[][name]">
     <option value=nil> select an option </option>
-        <% @workout.workout_exercises.each do |exercise| %>
+        <% Exercise.all.each do|ex| %>
             <option value="<%= ex.name %>" ><%= ex.name %> </option> 
         <% end %>
-    </select>
+    </select><br>
     Or create a new exercise:<br>
     <label for="exercise_<%=num%>_name">Name</label>
-    <input type="text" name="exercises[][name]" value="<%= exercise.id %>" id="exercise_<%=num%>_name"></input>
+    <input type="text" name="exercises[][name]" id="exercise_<%=num%>_name"></input>
     
     <label for="exercise_<%=num%>_bodypart">Body_part</label>
-    <input type="text" name="exercises[][bodypart]" value="<%= exercise.id %>" id="exercise_<%=num%>_bodypart"></input>
-    <br>
+    <input type="text" name="exercises[][bodypart]" id="exercise_<%=num%>_bodypart"></input>
+    <br><hr>
   <% end %>
   <input type="submit" value="Update">
 
