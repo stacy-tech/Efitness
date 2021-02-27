@@ -15,14 +15,14 @@
         <% Exercise.all.each do |ex| %>
             <option value="<%= ex.name %>" ><%= ex.name %> </option> 
         <% end %>
-    </select>
+    </select><br>
     Or create a new exercise:<br>
     <label for="exercise_<%=num%>_name">Name</label>
     <input type="text" name="exercises[][name]" id="exercise_<%=num%>_name"></input>
     
     <label for="exercise_<%=num%>_bodypart">Body_part</label>
     <input type="text" name="exercises[][bodypart]" id="exercise_<%=num%>_bodypart"></input>
-    <br>
+    <br><hr>
   <% end %>
   <label for="workout_notes">Notes</label>
   <input type="text" name="workout[notes]" id="workout_notes"></input>
