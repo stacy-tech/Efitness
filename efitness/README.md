@@ -13,3 +13,6 @@ Run shotgun to start the server
 ## Usage
 Sign up for an accout by creating a username and password. 
 
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
+
