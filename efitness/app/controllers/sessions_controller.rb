@@ -25,6 +25,10 @@ class SessionsController < ApplicationController
     redirect '/'
   end
 
+  get '/about' do 
+    erb :'workouts/about.html'
+  end
+
 end
 
   
